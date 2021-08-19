@@ -1,0 +1,48 @@
+version: '3'
+
+services:
+  t2y-backend:
+    build: .
+    image: t2y-backend
+    environment:
+      - DB_HOST=mongodb://mongodb:27017/t2y
+      - REDIS_HOST=redis
+      - REDIS_PORT=6397
+      - REDIS_PASS=redispass123
+    ports:
+      - '3000:3000'
+    depends_on:
+      - mongodb
+      - redis
+    volumes:
+      - .:/usr/src/node-app
+    networks:
+      - node-network
+    command: ["npm", "start"]
+
+  mongodb:
+    image: mongo:4.2.1-bionic
+    ports:
+      - '27017:27017'
+    volumes:
+      - dbdata:/data/db
+    networks:
+      - node-network
+
+  redis:
+    image: redis
+    ports:
+        - "6397:6397"
+    volumes:
+        - ./redis.conf:/usr/local/etc/redis/redis.conf
+        - ./data:/usr/local/etc/redis/data
+    networks:
+        - node-network
+    command: ["redis-server", "--bind", "redis", "--port", "6397", "--requirepass", "redispass123"]
+
+volumes:
+  dbdata:
+
+networks:
+  node-network:
+    driver: bridge

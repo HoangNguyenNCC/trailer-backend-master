@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "http://trailer2you.herokuapp.com/adminpanel/static/css/main.2decf9bf.chunk.css",
+    "main.js": "http://trailer2you.herokuapp.com/adminpanel/static/js/main.dc2e8c1b.chunk.js",
+    "main.js.map": "http://trailer2you.herokuapp.com/adminpanel/static/js/main.dc2e8c1b.chunk.js.map",
+    "runtime-main.js": "http://trailer2you.herokuapp.com/adminpanel/static/js/runtime-main.8e829cd4.js",
+    "runtime-main.js.map": "http://trailer2you.herokuapp.com/adminpanel/static/js/runtime-main.8e829cd4.js.map",
+    "static/js/2.5fd46419.chunk.js": "http://trailer2you.herokuapp.com/adminpanel/static/js/2.5fd46419.chunk.js",
+    "static/js/2.5fd46419.chunk.js.map": "http://trailer2you.herokuapp.com/adminpanel/static/js/2.5fd46419.chunk.js.map",
+    "index.html": "http://trailer2you.herokuapp.com/adminpanel/index.html",
+    "precache-manifest.8e43d4fe3ad1c999e79c868662d0c6b1.js": "http://trailer2you.herokuapp.com/adminpanel/precache-manifest.8e43d4fe3ad1c999e79c868662d0c6b1.js",
+    "service-worker.js": "http://trailer2you.herokuapp.com/adminpanel/service-worker.js",
+    "static/css/main.2decf9bf.chunk.css.map": "http://trailer2you.herokuapp.com/adminpanel/static/css/main.2decf9bf.chunk.css.map",
+    "static/js/2.5fd46419.chunk.js.LICENSE.txt": "http://trailer2you.herokuapp.com/adminpanel/static/js/2.5fd46419.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8e829cd4.js",
+    "static/js/2.5fd46419.chunk.js",
+    "static/css/main.2decf9bf.chunk.css",
+    "static/js/main.dc2e8c1b.chunk.js"
+  ]
+}

@@ -1,0 +1,64 @@
+service: queueWorkers
+frameworkVersion: '1'
+
+plugins:
+  - serverless-dotenv-plugin
+  # - serverless-plugin-webpack
+
+custom:
+  INVOICE_S3_BUKCET_NAME: ${env:INVOICE_S3_BUKCET_NAME}
+  EMAIL_QUEUE_URL: { Ref: emailQueue }
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: ap-south-1
+  profile: t2y
+  stage: dev
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - ses:*
+        - s3:*
+        - sqs:*
+      Resource: '*'
+
+functions:
+  emailWorker:
+    handler: handler.emailWorker
+    events:
+      - sqs:
+          arn:
+            Fn::GetAtt:
+              - emailQueue
+              - Arn
+    environment:
+      EMAIL_QUEUE_URL: ${self:custom.EMAIL_QUEUE_URL}
+  invoiceWorker:
+    handler: handler.invoiceWorker
+    events:
+      - sqs:
+          arn:
+            Fn::GetAtt:
+              - invoiceQueue
+              - Arn
+    environment:
+      INVOICE_S3_BUKCET_NAME: ${self:custom.INVOICE_S3_BUKCET_NAME}
+      EMAIL_QUEUE_URL: ${self:custom.EMAIL_QUEUE_URL}
+
+resources:
+  Resources:
+    invoiceBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:custom.INVOICE_S3_BUKCET_NAME}
+    emailQueue:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: email-queue-${opt:stage, self:provider.stage, 'dev'}
+    invoiceQueue:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: invoice-queue-${opt:stage, sef:provider.stage, 'dev'}
+
+  

@@ -1,0 +1,8 @@
+{
+    "name": "trailer2you",
+    "version": "0.0.1",
+    "description": "API Documentation for Trailer2You Application",
+    "apidoc": {
+      "title": "API Doc - Trailer2You"
+    }
+  }
